@@ -1,0 +1,50 @@
+{\rtf1\ansi\ansicpg1251\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 using System;\
+using System.Collections.Generic;\
+using System.Linq;\
+using System.Text;\
+using System.IO;\
+\
+namespace Task\
+\{\
+    class Program\
+    \{\
+        static string[] parse;\
+\
+        static void Main(string[] args)\
+        \{\
+            string[] data =  File.ReadAllLines("test.txt");\
+            int T = int.Parse( data[0]);\
+\
+            for (int i = 0; i < T; i++)\
+            \{\
+                parse = data[i + 1].Split(new char[] \{ ' ' \}, StringSplitOptions.RemoveEmptyEntries);\
+                int A = int.Parse(parse[0]);\
+                int B = int.Parse(parse[1]);\
+                int M = int.Parse(parse[2]);\
+\
+                int count = 0;\
+                int next = 0;\
+\
+                if( M < B ) \
+                \{\
+                    if ( M >= A ) \{ next = M; \}\
+                    else  \
+                    \{\
+                        while (next < A)\
+                            next += M;\
+                    \}\
+                    while( next <= B ) \{ count++; next+=M; \};\
+                \}\
+                Console.WriteLine(count.ToString());\
+            \}\
+            Console.ReadKey();\
+        \}\
+    \}\
+\}\
+}
